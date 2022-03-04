@@ -3,23 +3,40 @@
 ***
 # 学习记录
 
-## 三月二
-学习了git使用，搭建了docsify个人博客，主要用于记录学习过程，Java笔记
-其中git使用常用命令为：
+## 三月四
+三种控制结构，顺序、分支、循环
+switch注意事项：
+* 表达式类型只能是byte、short、int、char，jdk5开始支持枚举，jkd7支持String,不支持double、float，因为double、float底层计算不精确，不支持long,因为太大了
+* case给出得值不允许重复，且只能是字面量，不能是变量
+* 不要忘记写break，否则会出现穿透现象
+
+**for循环** 
 ```
-git init  初始化仓库 
-git add xxx.xx 添加文件
-git add -A 添加所有修改的文件
-git commit -m "xxxx"
-git reset --hard HEAD^ 返回上一版本，HEAD时当前版本 
-git branch xxx 创建分支
-git cheackout xx 切换分支
-git merge xx 合并分支
-git push origin xx 更新到github
-git status 查看当前状态
-....
+for (初始化; 循环语句; 迭代语句){
+}
+for (int i = 0; i++ < 10; System.out.println(i)){
+    //输出1-10
+}
 ```
-附上参考资料，[不会再查](https://mp.weixin.qq.com/s/swnwBiuyVmhs5iPqv3H6BQ)
+**冒泡排序**
+* 比较轮数为 数组长度-1
+* 每轮次数为 数组长度-i-1
+```
+int [] arr={6,5,4,3,2,1};
+for (int i = 0; i < arr.length-1; i++) {
+    for (int j = 0; j < arr.length-i-1 ; j++) {
+        if(arr[j]>arr[j+1]){
+            int temp=arr[j+1];
+            arr[j+1]=arr[j];
+            arr[j]=temp;
+        }
+        System.out.println("第"+i+"轮"+Arrays.toString(arr));
+    }
+}
+System.out.println("排序完成："+Arrays.toString(arr));
+```
+
+
 
 ***
 ## 三月三
@@ -50,7 +67,29 @@ System.out.println(b); // b=12
 **byte short char 是直接转换成int类型参与运算的**
 类型转换面试题，byte i=10; byte j=120; byte k=i+j;(*不行，byte在运算中当做int,所有k要声明为int*)  **因为byte太小，运算容易越界，所有干脆直接当作int运算**
 
-&& 短路与，左边为false，右边不执行
-|| 短路或，左边为true,右边不执行
-三元运行符 ```条件？a:b  int max=a>b ？ a:b ```
+*&& 短路与，左边为false，右边不执行
+*|| 短路或，左边为true,右边不执行
+*三元运行符 ```条件？a:b  int max=a>b ？ a:b ```
+三元运算符嵌套，```int max = i>j? (i>k? i: k) : (j>k? j: K) ```
+
+
+## 三月二
+学习了git使用，搭建了docsify个人博客，主要用于记录学习过程，Java笔记
+其中git使用常用命令为：
+```
+git init  初始化仓库 
+git add xxx.xx 添加文件
+git add -A 添加所有修改的文件
+git commit -m "xxxx"
+git reset --hard HEAD^ 返回上一版本，HEAD时当前版本 
+git branch xxx 创建分支
+git cheackout xx 切换分支
+git merge xx 合并分支
+git push origin xx 更新到github
+git status 查看当前状态
+....
+```
+附上参考资料，[不会再查](https://mp.weixin.qq.com/s/swnwBiuyVmhs5iPqv3H6BQ)
+
+***
 
