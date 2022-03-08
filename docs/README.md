@@ -3,6 +3,99 @@
 ***
 # 学习记录
 
+## 三月八
+String类，java.lang.String ,对象不可更改类型，创建的对象不可更改，String变量每次的修改其实都是产生并指向了新的字符串对象，原来的字符串对象都市没有改变的，所以称不可变字符串
+```
+//创建字符串，
+//方式一
+String str1 = "方式一 this is a string";
+System.out.println(str1);
+
+//方式二
+//1.public String() :创建一个空白字符串，不含任何内容，几乎不用
+String str2=new String();
+System.out.println(str2);
+
+//2.public string(string) 根据传入的字符串内容来创建字符串对象，几乎不用
+String str3=new String("i am chinese");
+System.out.println(str3);
+
+//3.public string (char [] c) : 根据字符数组的内容来创建字符串对象
+char c[]={'a','b','v','i','中','国'};
+String str4=new String(c);
+System.out.println(str4);
+
+//4. public string(byte []):根据字节数组的内容来创建字符串对象
+byte [] b={97,98,99,100,101,102,103};
+String str5=new String(b);
+System.out.println(str5);
+```
+***面试题***
+**Q** 
+有什么区别
+**A**
+- 以""方式给出的字符串对象，在字符串常量池中存储 ，而且相同内容只会在其中存储一份
+- 通过构造器的new对象，每new一次都会产生一个新的对象，放在堆内存中
+
+**Q**
+```
+//这行代码创建了两个对象，new一个，常量"abc"一个
+String s2 = new String("abc"); 
+//这行代码创建了0个对象
+String s1 = "abc";
+//地址不同，false
+System.out.println(s1 == s2);
+
+String str1="abc";
+string str2="ab";
+String str3=s2+"c"; //只要没明确写出是字符串，都会new新对象放在堆内存中
+```
+![string面试题](note_img\20220308String面试题.png)
+
+***ArrayList集合***
+![ArrayList](note_img\20220308Arraylist.png)
+```
+//泛型
+//jdk17开始，泛型后面的类型声明可以不写
+ArrayList<String> list=new ArrayList<>(); 
+```
+```
+ArrayList<String> list=new ArrayList<String >();
+    list.add("java");
+    list.add("c");
+    list.add("c++");
+    list.add("python");
+    list.add("js");
+    list.add("html");
+
+    //1.public E get(int index)：获取某个位置出的元素值
+    System.out.println(list.get(0));
+
+    //2.public int size() 获取集合的大小
+    System.out.println(list.size());
+
+    //3.集合遍历
+    for (String s :
+            list) {
+        System.out.println(s);
+    }
+
+    //4.public E remove(int index) :删除某个索引，并返回被删除的元素值
+    String str2=list.remove(0);
+    System.out.println(str2);
+    System.out.println(list);
+    list.remove("java");
+    // remove(object o )只会删除第一次出现的元素，后面出现的不会删除
+
+    //5. public E set(int index,E element): 修改某个索引位置的元素值
+    list.set(0,"c++");
+    System.out.println(list);
+```
+![ArrayListAPI](note_img\20220308ArraylistAPI.png)
+
+## 三月七
+摸鱼
+
 ## 三月六
 摸鱼
 
