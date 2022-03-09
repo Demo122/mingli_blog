@@ -3,6 +3,92 @@
 ***
 # 学习记录
 
+## 三月九
+***java进阶***
+**static关键字使用**
+- 静态成员变量，有static修饰,属于类，只在类第一次加载时创建，可以被共享访问，通过```类名.变量名``` 或者```对象名.变量名```
+- 静态成员方法，有static修饰，归属类，用类名访问
+- static 访问注意事项：
+    1. 静态方法只能访问静态的成员，不可以直接访问实列成员
+    2. 实例方法可以访问静态的成员，也可以访问实列成员
+    3. 静态方法中是不可以出现this关键字的
+- **工具类不用创建对象，都是静态成员方法，可以写一个private的构造函数**
+**代码块**
+![代码块](note_img\学习记录\3.9\20220309staticCode.png)
+```
+public class StaticCode {
+    /**
+     * 静态代码块，static修饰,与类一起加载，自动触发执行
+     * 作用：可以用于初始化静态资源
+     */
+    public static int num;
+
+    static {
+        System.out.println("这是静态代码块");
+        num = 0;
+    }
+
+    public static void main(String[] args) {
+
+    }
+}
+```
+
+**单例模式**
+- 可以保证系统中，应用该模式的这个类永远只有一个实例，即一个类永远只能创建一个对象
+- 例如任务管理器对象哦我们只需要一个就可以解决问题了，这样口语节省内存空间
+- 实现方式很多：
+    1. 饿汉单例：在用类获取对象的时候，对象以及提前为你创建好了
+    ```
+    public class SingleInstance {
+        //饿汉单例设计模式
+        /**
+        * 饿汉单例设计模式：在用类获取对象的时候，对象以及提前为你创建好了
+        * 2.这个对象只能是一个，所以定义为静态成员变量！
+        */
+        public static SingleInstance instance=new SingleInstance();
+
+        /**
+        * 1.必须把构造器私有化
+        */
+        private SingleInstance(){
+        }
+    }
+    ```
+    2. 懒汉单例：真正需要该对象的是，才去创建一个对象（延迟加载对象）
+    ```
+    public class LanSingleInstance {
+        //设置成私有的，防止通过类名直接取null的对象
+        private static LanSingleInstance instance; //null
+
+        //提供静态成员方法返回对象
+        public static LanSingleInstance getInstance() {
+            //只需第一次创建
+            if (instance == null) {
+                instance = new LanSingleInstance();
+            }
+            return instance;
+        }
+
+        //构造函数私有
+        private LanSingleInstance() {
+        }
+    }
+    ```
+
+**继承**
+继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。
+```
+class 父类 {
+}
+ 
+class 子类 extends 父类 {
+}
+```
+
+
+
+***
 ## 三月八
 String类，java.lang.String ,对象不可更改类型，创建的对象不可更改，String变量每次的修改其实都是产生并指向了新的字符串对象，原来的字符串对象都市没有改变的，所以称不可变字符串
 ```
@@ -31,6 +117,7 @@ String str5=new String(b);
 System.out.println(str5);
 ```
 ***面试题***
+
 **Q** 
 有什么区别
 **A**
@@ -50,10 +137,10 @@ String str1="abc";
 string str2="ab";
 String str3=s2+"c"; //只要没明确写出是字符串，都会new新对象放在堆内存中
 ```
-![string面试题](note_img\20220308String面试题.png)
+![string面试题](note_img\学习记录\3.8\20220308String面试题.png)
 
 ***ArrayList集合***
-![ArrayList](note_img\20220308Arraylist.png)
+![ArrayList](note_img\学习记录\3.8\20220308Arraylist.png)
 ```
 //泛型
 //jdk17开始，泛型后面的类型声明可以不写
@@ -91,7 +178,7 @@ ArrayList<String> list=new ArrayList<String >();
     list.set(0,"c++");
     System.out.println(list);
 ```
-![ArrayListAPI](note_img\20220308ArraylistAPI.png)
+![ArrayListAPI](note_img\学习记录\3.8\20220308ArraylistAPI.png)
 
 ## 三月七
 摸鱼
