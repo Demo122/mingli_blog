@@ -3,7 +3,7 @@
 ***
 # 学习记录
 
-## 内部类
+## 3.13 内部类
 ![内部类](note_img\学习记录\3.13\内部类.png)
 ![静态内部类](note_img\学习记录\3.13\静态内部类.png)
 静态内部类中可以直接访问外部类的静态成员
@@ -12,7 +12,67 @@
 **匿名内部类**
 ![匿名内部类](note_img\学习记录\3.13\匿名内部类.png)
 
+**常用API**
+* Object类
+![object_equals](note_img\学习记录\3.13\object_equals.png)
+* Objects类，jdk1.7后才有
+![objects概述](note_img\学习记录\3.13\objects.png)
+**在比较前会做一个是否为null的判断，避免空指针异常，更加安全**
 
+**StringBuilder**
+当对字符串进行修改的时候，需要使用 StringBuffer 和 StringBuilder 类。
+和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。
+
+在使用 StringBuffer 类时，每次都会对 StringBuffer 对象本身进行操作，而不是生成新的对象，所以如果需要对字符串进行修改推荐使用 StringBuffer。
+
+StringBuilder 类在 Java 5 中被提出，**它和 StringBuffer 之间的最大不同在于 StringBuilder 的方法不是线程安全的（不能同步访问）。**
+
+由于 StringBuilder 相较于 StringBuffer 有速度优势，所以多数情况下建议使用 StringBuilder 类。
+![StringBuilder](note_img\学习记录\3.13\StringBuilder.png)
+
+**Math**
+![math](note_img\学习记录\3.13\math.png)
+
+**System**
+![system](note_img\学习记录\3.13\system.jpg)
+
+**BigDecimal**
+![bigdecimal](note_img\学习记录\3.13\BigDecimal_1.jpg)
+![bigdecimal](note_img\学习记录\3.13\BigDecimal_2.jpg)
+![bigdecimal](note_img\学习记录\3.13\bigdecimal_3.jpg)
+```
+System.out.println(0.09+0.01);
+double a=0.09,b=0.01;
+System.out.println(a+b);
+BigDecimal ba=BigDecimal.valueOf(a);
+BigDecimal bb=BigDecimal.valueOf(b);
+System.out.println(ba.add(bb));
+
+//输出
+0.09999999999999999
+0.09999999999999999
+0.10
+```
+**注意：BigDecimal是一定要做精度运算的**
+```
+BigDecimal a = BigDecimal.valueOf(10.0);
+BigDecimal b = BigDecimal.valueOf(3.0);
+//BigDecimal c=a.divide(b); //报错，因为10/3是无限循环，得不到精确值
+BigDecimal c = a.divide(b, 2, RoundingMode.HALF_UP); //四舍五入，精确2位
+System.out.println(c);
+```
+* 日期格式化和解析
+![日期格式化和解析](note_img\学习记录\3.13\日期格式化和解析.jpg)
+![日历对象](note_img\学习记录\3.13\日历对象.png)
+
+**包装类**
+![包装类](note_img\学习记录\3.13\包装类.png)
+![自动装箱——拆箱](note_img\学习记录\3.13\自动拆箱装箱.png)
+
+**正则表达式**
+![正则表达式](note_img\学习记录\3.13\正则表达式.png)
+
+***
 ## 三月十一
 ***多态***
 ![多态](note_img\学习记录\3.11\多态.png)
