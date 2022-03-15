@@ -37,35 +37,35 @@
 - List集合的遍历方式有几种: **迭代器**(推荐，更安全) 、增强for循环、Lambda表达式、for循环（因为List集合存在索引）
 - LinkedList的特点：底层数据结构是双链表，查询慢，首尾操作的速度是极快的，所以多了很多首尾操作的特有API。
 ![LinkedList特点](note_img\学习记录\3.15\linkedlist.png)
+
 ```
-     //linkedlist可以完成队列、栈结构，因为它是双链表结构
-        //栈
-        LinkedList<String> stack=new LinkedList<>();
-        //入栈
-//        stack.addFirst("1");
-//        stack.addFirst("2");
-//        stack.addFirst("3");
-        stack.push("1"); //push就是addFirst
+//linkedlist可以完成队列、栈结构，因为它是双链表结构
+//栈
+LinkedList<String> stack=new LinkedList<>();
+    //入栈
+//  stack.addFirst("1");
+//  stack.addFirst("2");
+//  stack.addFirst("3");
+stack.push("1"); //push就是addFirst
 
-        System.out.println(stack);  //[3, 2, 1]
-        //出栈
-//        System.out.println(stack.removeFirst()); //3
-//        System.out.println(stack.removeFirst()); //2
-//        System.out.println(stack.removeFirst()); //1
-        System.out.println(stack.pop()); //pop就是removeFirst()
+System.out.println(stack);  //[3, 2, 1]
+    //出栈
+//  System.out.println(stack.removeFirst()); //3
+//  System.out.println(stack.removeFirst()); //2
+//  System.out.println(stack.removeFirst()); //1
+System.out.println(stack.pop()); //pop就是removeFirst()
 
-        //队列
-        LinkedList<String> queue=new LinkedList<>();
-        //入队
-        queue.addLast("A");
-        queue.addLast("B");
-        queue.addLast("C");
-        System.out.println(queue); //[A, B, C]
-        //出队
-        System.out.println(queue.removeFirst());
-        System.out.println(queue.removeFirst());
-        System.out.println(queue.removeFirst());
-
+//队列
+LinkedList<String> queue=new LinkedList<>();
+    //入队
+queue.addLast("A");
+queue.addLast("B");
+queue.addLast("C");
+System.out.println(queue); //[A, B, C]
+    //出队
+System.out.println(queue.removeFirst());
+System.out.println(queue.removeFirst());
+System.out.println(queue.removeFirst());
 ```
 
 **集合的并发修改异常问题**
