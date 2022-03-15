@@ -3,6 +3,242 @@
 ***
 # 学习记录
 
+## 3.15 数据结构
+**数据结构**
+- 栈：后进先出，先进后出
+- 队列：先进先出，后进后出
+- 数组：数组是一种查询快，增删慢的模型
+    1. 查询速度快：查询数据通过地址值和索引定位，查询任意数据耗时相同。（元素在内存中是连续存储的）
+    2. 删除效率低：要将原始数据删除，同时后面每个数据前移。
+    3. 添加效率极低：添加位置后的每个数据后移，再添加元素
+- 链表： 链表中的元素是在内存中不连续存储的，每个元素节点包含数据值和下一个元素的地址
+    1. 链表查询慢。无论查询哪个数据都要从头开始找
+    2. 链表增删相对快
+- 二叉树
+    1. 只能有一个根节点，每个节点最多支持2个直接子节点
+    2. 节点的度： 节点拥有的子树的个数，二叉树的度不大于2 叶子节点 度为0的节点，也称之为终端结点
+    3. 高度：叶子结点的高度为1，叶子结点的父节点高度为2，以此类推，根节点的高度最高。
+    4. 层：根节点在第一层，以此类推
+    5. 兄弟节点 ：拥有共同父节点的节点互称为兄弟节点
+- 平衡二叉树：平衡二叉树是在满足查找二叉树的大小规则下，让树尽可能矮小，以此提高查数据的性能
+- **红黑树**
+![红黑树](note_img\学习记录\3.15\红黑树.png)
+![总结](note_img\学习记录\3.15\总结.png)
+
+**List系列集合**
+- 特点：
+    1. ArrayList、LinekdList ：有序，可重复，有索引。
+    2. 有序：存储和取出的元素顺序一致
+    3. 有索引：可以通过索引操作元素
+    4. 可重复：存储的元素可以重复
+- List的实现类的底层原理
+    1. ArrayList底层是基于数组实现的，根据查询元素快，增删相对慢。
+    2. LinkedList底层基于双链表实现的，查询元素慢，增删首尾元素是非常快的。
+- List集合的遍历方式有几种: **迭代器**(推荐，更安全) 、增强for循环、Lambda表达式、for循环（因为List集合存在索引）
+- LinkedList的特点：底层数据结构是双链表，查询慢，首尾操作的速度是极快的，所以多了很多首尾操作的特有API。
+![LinkedList特点](note_img\学习记录\3.15\linkedlist.png)
+```
+     //linkedlist可以完成队列、栈结构，因为它是双链表结构
+        //栈
+        LinkedList<String> stack=new LinkedList<>();
+        //入栈
+//        stack.addFirst("1");
+//        stack.addFirst("2");
+//        stack.addFirst("3");
+        stack.push("1"); //push就是addFirst
+
+        System.out.println(stack);  //[3, 2, 1]
+        //出栈
+//        System.out.println(stack.removeFirst()); //3
+//        System.out.println(stack.removeFirst()); //2
+//        System.out.println(stack.removeFirst()); //1
+        System.out.println(stack.pop()); //pop就是removeFirst()
+
+        //队列
+        LinkedList<String> queue=new LinkedList<>();
+        //入队
+        queue.addLast("A");
+        queue.addLast("B");
+        queue.addLast("C");
+        System.out.println(queue); //[A, B, C]
+        //出队
+        System.out.println(queue.removeFirst());
+        System.out.println(queue.removeFirst());
+        System.out.println(queue.removeFirst());
+
+```
+- 集合的并发修改异常问题
+![集合的并发修改异常](note_img\学习记录\3.15\集合的并发修改异常.png)
+**Iterator迭代器中的remove的方法需要在next()方法调用后才能调用，且只能使用一次**
+
+
+**泛型**
+1. 泛型概述
+    - 泛型：是JDK5中引入的特性，可以在编译阶段约束操作的数据类型，并进行检查
+    - **泛型类的原理：把出现泛型变量的地方全部替换成传输的真实数据类型**
+    - 泛型的格式：<数据类型>; 注意：泛型只能支持引用数据类型
+    - 泛型类的格式：修饰符 class 类名<泛型变量>{  }
+    - 泛型方法的格式：修饰符 <泛型变量> 方法返回值 方法名称(形参列表){}
+    - 泛型接口的格式：修饰符 interface 接口名称<泛型变量>{}
+    - 集合体系的全部接口和实现类都是支持泛型的使用的
+2. 泛型的好处
+    - 统一数据类型
+    - 把运行时期的问题提前到了编译期间，避免了强制类型转换可能出现的异常，因为编译阶段类型就能确定下来
+3. 通配符:?
+    - ? 可以在“使用泛型”的时候代表一切类型。
+    - E T K V 是在定义泛型的时候使用的
+    - 泛型的上下限：
+        - ? extends Car: ?必须是Car或者其子类   泛型上限
+        - ? super Car ： ?必须是Car或者其父类   泛型下限
+
+
+**Set系列集合**
+- Set系列集合特点
+    1. 无序：存取顺序不一致
+    2. 不重复：可以去除重复
+    3. 无索引：没有带索引的方法，所以不能使用普通for循环遍历，也不能通过索引来获取元素
+- Set集合实现类特点
+    1. HashSet : **无序**、不重复、无索引
+    2. LinkedHashSet：**有序**、不重复、无索引
+    3. TreeSet：**排序**、不重复、无索引
+- **HashSet底层原理**
+    HashSet集合底层采取哈希表存储的数据,哈希表是一种对于增删改查数据性能都较好的结构。
+    1. **哈希表的组成**
+        * JDK8之前的，底层使用**数组+链表**组成
+        * JDK8开始后，底层采用**数组+链表+红黑树**组成。
+    2. jdk8的hashset原理
+        * 哈希表（数组、链表、红黑树的结合体）
+        * 当挂在元素下面的数据过多时，查询性能降低，**从JDK8开始后，当链表长度超过8的时候，自动转换为红黑树**
+        * HashSet去重复原理解析
+        ![HashSet去重复](note_img\学习记录\3.15\Hashset去重复.png)
+- **LinkedHashSet**
+    * 有序、不重复、无索引。
+    * 这里的有序指的是保证存储和取出的元素顺序一致
+    * 原理：底层数据结构是依然哈希表，只是每个元素又额外的多了一个双链表的机制记录存储的顺序。
+- **TreeSet**
+    1. 不重复、无索引、可排序
+    2. 可排序：按照元素的大小默认升序（有小到大）排序。
+    3. TreeSet集合底层是基于**红黑树的数据结构实现排序**的，增删改查性能都较好。
+    4. **注意：TreeSet集合是一定要排序的，可以将元素按照指定的规则进行排序。**
+    **想要使用TreeSet存储自定义类型，需要制定排序规则**
+    自定义排序规则,TreeSet集合存储对象的的时候有2种方式可以设计自定义比较规则
+    -  让自定义的类（如学生类）实现Comparable接口重写里面的compareTo方法来定制比较规则。
+    - **TreeSet集合有参数构造器，可以设置Comparator接口对应的比较器对象，来定制比较规则。**
+    ```
+     public TreeSet(Comparator<? super E> comparator) {
+        this(new TreeMap<>(comparator));
+    }
+    ```
+![集合使用场景](note_img\学习记录\3.15\集合使用场景.png)
+
+
+可变参数
+* 可变参数用在形参中可以接收多个数据。可变参数的格式：数据类型...参数名称
+* 传输参数非常灵活，方便。可以不传输参数，可以传输1个或者多个，也可以传输一个数组
+* **可变参数在方法内部本质上就是一个数组**
+* 可变参数的注意事项
+    1. 一个形参列表中可变参数只能有一个
+    2. 可变参数必须放在形参列表的最后面
+    
+**Collections集合工具类**
+    java.utils.Collections:是集合工具类
+    **作用：Collections并不属于集合，是用来操作集合的工具类。**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 3.14 Arrays、二分查找、lambda表达式
+
+**Arrays**
+![arrays1](note_img\学习记录\3.14\arrays1.png)
+![arrays2](note_img\学习记录\3.14\arrays2.png)
+![comparatoe](note_img\学习记录\3.14\Arrays_comparator.png)
+
+**二分查找**
+```
+/**
+ * 二分查找法
+ */
+public class BinarySearch {
+    // 二分查找法,在有序数组arr中,查找target
+    // 如果找到target,返回相应的索引index
+    // 如果没有找到target,返回-1
+    public static int find(Comparable[] arr, Comparable target) {
+
+        // 在arr[l...r]之中查找target
+        int l = 0, r = arr.length-1;
+        while( l <= r ){
+
+            //int mid = (l + r)/2;
+            // 防止极端情况下的整形溢出，使用下面的逻辑求出mid
+            int mid = l + (r-l)/2;
+
+            if( arr[mid].compareTo(target) == 0 )
+                return mid;
+
+            if( arr[mid].compareTo(target) > 0 )
+                r = mid - 1;
+            else
+                l = mid + 1;
+        }
+
+        return -1;
+    }
+}
+```
+![binarySearch](note_img\学习记录\3.14\二分查找.png)
+
+**Lambda表达式**
+![lambda](note_img\学习记录\3.14\lambda表达式.png)
+![lambda2](note_img\学习记录\3.14\lambda2.png)
+[附录](https://www.runoob.com/java/java8-lambda-expressions.html)
+
+**集合**
+![collection体系](note_img\学习记录\3.14\collection集合体系.png)
+```
+ArrayList<String > arrayList=new ArrayList<>();
+    arrayList.add("google");
+    arrayList.add("baidu");
+    arrayList.add("tencent");
+    arrayList.add("bytedance");
+    arrayList.add("jd");
+    
+    //forEach
+    arrayList.forEach(new Consumer<String>() {
+        @Override
+        public void accept(String s) {
+            System.out.println(s);
+        }
+    });
+```
+
+
+***
 ## 3.13 内部类
 ![内部类](note_img\学习记录\3.13\内部类.png)
 ![静态内部类](note_img\学习记录\3.13\静态内部类.png)
