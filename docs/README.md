@@ -69,7 +69,9 @@ System.out.println(queue.removeFirst());
 ```
 
 **集合的并发修改异常问题**
+
 ![集合的并发修改异常](note_img\学习记录\3.15\集合的并发修改异常.png)
+
 **Iterator迭代器中的remove的方法需要在next()方法调用后才能调用，且只能使用一次**
 
 
