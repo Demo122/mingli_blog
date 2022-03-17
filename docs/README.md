@@ -128,7 +128,6 @@
             System.out.println("自定义异常");
         }
     }
-
     //抛出异常
     public class Demo {
         public void test() throws myException {
@@ -136,7 +135,6 @@
             throw new myException();
         }
     }
-
     //捕获异常
     Demo d=new Demo();
     try {
