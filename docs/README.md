@@ -3,6 +3,50 @@
 ***
 # 学习记录
 
+## 3.18 缓冲流、序列化、Properties、commons-io
+
+**缓冲流**
+* 缓冲流也称为高效流、或者高级流。之前学习的字节流可以称为原始流
+* 作用：缓冲流自带缓冲区、可以提高原始字节流、字符流读写数据的性能
+* **建议使用字节缓冲输入流、字节缓冲输出流，结合字节数组的方式，目前来看是性能最优的组合**
+
+**对象序列化**
+- 作用：以内存为基准，把内存中的对象存储到磁盘文件中去，称为对象序列化
+- 使用到的流是对象字节输出流：ObjectOutputStream
+- **对象必须实现序列化接口Serializable**
+**对象反序列化**
+- 使用到的流是对象字节输入流：ObjectInputStream
+- 作用：以内存为基准，把存储到磁盘文件中去的对象数据恢复成内存中的对象，称为对象反序列化。
+
+**打印流**
+- 打印流一般是指：PrintStream，PrintWriter两个类。
+- 打印功能2者是一样的使用方式
+- PrintStream继承自字节输出流OutputStream，支持写字节
+- PrintWrite继承自字符输出流Writer，支持写字符
+- 两者在打印功能上都是使用方便，性能高效（核心优势）
+
+**Properties**
+- Properties属性集对象
+    * 其实就是一个Map集合，但是我们一般不会当集合使用，因为HashMap更好用。
+- Properties核心作用：
+    * Properties代表的是一个属性文件，可以把自己对象中的键值对信息存入到一个属性文件中去。
+    * 属性文件：后缀是.properties结尾的文件,里面的内容都是 key=value，后续做系统配置信息的。
+- properties的API
+    ![properties——api](note_img\学习记录\3.18\properties.png)
+
+**commons-io**
+- commons-io是apache开源基金组织提供的一组有关IO操作的类库，可以提高IO功能开发的效率。
+- commons-io工具包提供了很多有关io操作的类。有两个主要的类FileUtils, IOUtils
+- **FileUtils主要有如下方法:**
+    - ```String readFileToString(File file, String encoding)```, 读取文件中的数据, 返回字符串
+    - ```void copyFile(File srcFile, File destFile)```, 复制文件。
+    - ```void copyDirectoryToDirectory(File srcDir, File destDir)```, 复制文件夹。
+
+
+
+
+
+***
 ## 3.17 不可变集合、Stream、异常体系、日志框架、File、IO流
 **不可变集合**
 集合的数据项在创建的时候提供，并且在整个生命周期中都不可改变。否则报错
