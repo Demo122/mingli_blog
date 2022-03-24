@@ -27,7 +27,7 @@
 **反射**
 ![反射概述](note_img\学习记录\3.23\反射概述.png)
 **获取class对象**
-```
+```java
 //1. Class.forName()
 Class c = Class.forName("com.day7.People");
 System.out.println(c);
