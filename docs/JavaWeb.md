@@ -101,6 +101,168 @@ DQL简单理解就是对数据进行查询操作。从数据库表中查询到�
 DML简单理解就是对数据库进行权限控制。比如我让某一个数据库表只能让某一个用户进行操作等。
 > 注意： 以后我们最常操作的是 `DML` 和 `DQL`  ，因为我们开发中最常操作的就是数据。
 
+- **DDL:操作数据库**
+    1. **查询**
+        ```sql
+        SHOW DATABASES; /*  查询所有的数据库 */
+        ```
+    2. **创建数据库**
+        * **创建数据库**
+        ```sql
+        CREATE DATABASE 数据库名称;
+        ```
+        * **创建数据库(判断，如果不存在则创建)**
+        ```sql
+        CREATE DATABASE IF NOT EXISTS 数据库名称;
+        ```
+    3. **删除数据库**
+        * **删除数据库**
+        ```sql
+        DROP DATABASE 数据库名称;
+        ```
+        * **删除数据库(判断，如果存在则删除)**
+
+        ```sql
+        DROP DATABASE IF EXISTS 数据库名称;
+        ```
+    4. **使用数据库**
+        * **使用数据库**
+        ```sql
+        USE 数据库名称;
+        ```
+        * **查看当前使用的数据库**
+        ```sql
+        SELECT DATABASE();
+        ```
+- **DML:操作表**
+    > 操作表也就是对表进行增（Create）删（Retrieve）改（Update）查（Delete）。
+    1. **查询表**
+        * **查询当前数据库下所有表名称**
+        ```sql
+        SHOW TABLES;
+        ```
+        * **查询表结构**
+        ```sql
+        DESC 表名称;
+        ```
+    2. **创建表**
+        * **创建表**
+        ```sql
+        CREATE TABLE 表名 (
+            字段名1  数据类型1,
+            字段名2  数据类型2,
+            …
+            字段名n  数据类型n
+        );
+
+        /*例如*/
+        create table tb_user (
+            id int,
+            username varchar(20),
+            password varchar(32)
+        );
+        ```
+    3. **数据类型**
+        * 数值
+        ```sql
+        tinyint : 小整数型，占一个字节
+        int	： 大整数类型，占四个字节
+            eg ： age int
+        double ： 浮点类型
+            使用格式： 字段名 double(总长度,小数点后保留的位数)
+            eg ： score double(5,2)   
+        ```
+        * 日期
+        ```sql
+        date ： 日期值。只包含年月日
+            eg ：birthday date ： 
+        datetime ： 混合日期和时间值。包含年月日时分秒
+        ```
+        * 字符串
+        ```sql
+        char ： 定长字符串。
+            优点：存储性能高
+            缺点：浪费空间
+            eg ： name char(10)  如果存储的数据字符个数不足10个，也会占10个的空间
+        varchar ： 变长字符串。
+            优点：节约空间
+            缺点：存储性能底
+            eg ： name varchar(10) 如果存储的数据字符个数不足10个，那就数据字符个数是几就占几个的空间	
+        ```
+    4.  **删除表**
+        * **删除表**
+        ```sql
+        DROP TABLE 表名;
+        ```
+
+        * **删除表时判断表是否存在**
+
+        ```sql
+        DROP TABLE IF EXISTS 表名;
+        ```
+    5. **修改表**
+        * **修改表名**
+        ```sql
+        ALTER TABLE 表名 RENAME TO 新的表名;
+
+        -- 将表名student修改为stu
+        alter table student rename to stu;
+        ```
+
+        * **添加一列**
+        ```sql
+        ALTER TABLE 表名 ADD 列名 数据类型;
+
+        -- 给stu表添加一列address，该字段类型是varchar(50)
+        alter table stu add address varchar(50);
+        ```
+        
+        * **修改数据类型**
+        ```sql
+        ALTER TABLE 表名 MODIFY 列名 新数据类型;
+
+        -- 将stu表中的address字段的类型改为 char(50)
+        alter table stu modify address char(50);
+        ```
+
+        * **修改列名和数据类型**
+        ```sql
+        ALTER TABLE 表名 CHANGE 列名 新列名 新数据类型;
+
+        -- 将stu表中的address字段名改为 addr，类型改为varchar(50)
+        alter table stu change address addr varchar(50);
+        ```
+
+        * **删除列**
+        ```sql
+        ALTER TABLE 表名 DROP 列名;
+
+        -- 将stu表中的addr字段 删除
+        alter table stu drop addr;
+        ```
+
+- **DML**
+    **DML主要是对数据进行增（insert）删（delete）改（update）操作。**
+    1. **添加数据**
+        * **给指定列添加数据**
+        ```sql
+        INSERT INTO 表名(列名1,列名2,…) VALUES(值1,值2,…);
+        ```
+
+        * **给全部列添加数据**
+        ```sql
+        INSERT INTO 表名 VALUES(值1,值2,…);
+        ```
+
+        * **批量添加数据**
+        ```sql
+        INSERT INTO 表名(列名1,列名2,…) VALUES(值1,值2,…),(值1,值2,…),(值1,值2,…)…;
+        INSERT INTO 表名 VALUES(值1,值2,…),(值1,值2,…),(值1,值2,…)…;
+        ```
+
+
+
+
 
 ***
 ## javaweb
