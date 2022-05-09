@@ -211,13 +211,13 @@ MAINTAINER xxxx
 # 从cuda复制基础环境
 COPY --from=nvidia/cuda:11.4.0-devel-ubuntu20.04 / /
 
-# 复制
+# 复制代码
 COPY swin_seg /swin_seg
 
-# 复制
+# 复制conda环境
 COPY mmseg.tar.gz /opt/conda/envs/
 
-# 创建conda环境
+# 解压、创建conda环境
 RUN mkdir /opt/conda/envs/mmseg
 RUN tar -zxf /opt/conda/envs/mmseg.tar.gz -C /opt/conda/envs/mmseg
 
@@ -240,7 +240,7 @@ docker build -t swin_seg:v1 .
 
 **导出镜像**
 
-`格式：docker save imagesID() > /存放位置/打包文件名.tar`  **[参考](https://blog.csdn.net/ichen820/article/details/119144468)**
+`格式：docker save imagesID(或者image_id) > /存放位置/打包文件名.tar`  **[参考](https://blog.csdn.net/ichen820/article/details/119144468)**
 
 ```shell
 docker save imagesID > /xxx.tar
