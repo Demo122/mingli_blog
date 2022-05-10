@@ -1,6 +1,6 @@
 ## 1. docker安装
 ### ubuntu中安装docker
-**1.卸载旧版本 **
+**1. 卸载旧版本 **
 
 ``` shell
  sudo apt-get remove docker docker-engine docker.io containerd runc
