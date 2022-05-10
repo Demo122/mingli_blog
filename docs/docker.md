@@ -3,13 +3,13 @@
 
 **1. 卸载旧版本**
 
-``` shell
+``` bash
  sudo apt-get remove docker docker-engine docker.io containerd runc
 ```
 
 **2. 安装依赖**
 
-```shell
+```bash
 sudo apt-get update
 sudo apt-get install \
 ca-certificates \
@@ -41,24 +41,24 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ​	***你可以使用如下命令查看当前存储库中可用的版本，自己指定版本号***
 ​	**查看命令为：**
 
-```shell
+```bash
 apt-cache madison docker-ce
 ```
    **安装，<VERSION_STRING>替换成你的版本号**
 
-```
+```bash
 sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io docker-compose-plugin
 
 ```
 
 **6. 测试是否安装成功**
 
-```
+```bash
  sudo docker run hello-world
 ```
 **如下，则成功**
 
-```
+```bash
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 2db29710123e: Pull complete 
@@ -87,7 +87,7 @@ https://hub.docker.com/
 
 **7. 卸载**
 
-```
+```bash
 sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 sudo rm -rf /var/lib/docker
@@ -112,18 +112,20 @@ docker network ls 查看网络列表
 
 ### dockerfile指令
 
-    FROM   		#基础镜像  一切从这里开始构建
-    MAINTAINER  #镜像是谁写的  名字+邮箱
-    RUN  		#镜像构建的时候需要运行的命令
-    ADD			#步骤，tomcat镜像，加一个tomcat压缩包！添加内容
-    WORKDIR 	#镜像的工作目录
-    VOLUME		#挂载的目录
-    EXPOSE		#指定暴露端口
-    CMD			#指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代
-    ENTRYPOINT	#指定这个容器启动的时候要运行的命令，可以追加命令
-    ONBUILD		#当构建一个被继承DockerFile，这个时候就会运行ONBUILD的指令
-    COPY		#类似ADD，将我们的文件拷贝到镜像中
-    ENV			#构建的时候设置环境变量
+```dockerfile
+FROM   		#基础镜像  一切从这里开始构建
+MAINTAINER  #镜像是谁写的  名字+邮箱
+RUN  		#镜像构建的时候需要运行的命令
+ADD			#步骤，tomcat镜像，加一个tomcat压缩包！添加内容
+WORKDIR 	#镜像的工作目录
+VOLUME		#挂载的目录
+EXPOSE		#指定暴露端口
+CMD			#指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代
+ENTRYPOINT	#指定这个容器启动的时候要运行的命令，可以追加命令
+ONBUILD		#当构建一个被继承DockerFile，这个时候就会运行ONBUILD的指令
+COPY		#类似ADD，将我们的文件拷贝到镜像中
+ENV			#构建的时候设置环境变量
+```
 
 更多参考 [dockerfile文档](https://docs.docker.com/engine/reference/commandline/run/)  [菜鸟dockerfile文档](https://www.runoob.com/docker/docker-command-manual.html)
 
@@ -139,7 +141,7 @@ docker network ls 查看网络列表
 
 多级构建需要用到`COPY`命令来复制上级环境，用法如下
 
-```shell
+```dockerfile
 FROM image-1 as base
 WORKDIR /base
 RUN do something
@@ -163,13 +165,13 @@ COPY --from=base /base ./build/base
 
 **1. 安装打包工具**
 
-```shell
+```bash
 pip install conda-pack
 ```
 
 **2. 打包conda环境**
 
-```shell
+```bash
 conda pack -n 虚拟环境名称  -o xxx.tar.gz
 或者
 conda pack -n 虚拟环境名称 --ignore-editable-packages -o xxx.tar.gz
@@ -235,7 +237,7 @@ RUN echo "source activate mmseg" >> ~/.bashrc
 
 **编译、构建镜像**
 
-```shell
+```bash
 docker build -t swin_seg:v1 .
 ```
 
