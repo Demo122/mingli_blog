@@ -202,7 +202,7 @@ source activate env_name
 
 **dockerfile的RUN命令默认是使用`/bin/sh`**
 
-```shell
+```dockerfile
 # 从conda开始构建
 FROM continuumio/anaconda3:2020.07
 
