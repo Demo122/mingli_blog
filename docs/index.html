@@ -18,9 +18,7 @@
   <!-- Gitalk 评论系统 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 
-
-
-
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css">
 
   <style>
     :root {
@@ -28,20 +26,22 @@
       --base-font-size: 16px;
 
       /* Change the theme color hue */
-      --theme-hue: purple;
+      --theme-hue: rgb(124, 51, 124);
       --theme-saturation: 90%;
       --theme-lightness: 45%;
       --sidebar-width: 18rem;
 
 
       /* Change the sidebar bullets */
-      /* --sidebar-nav-link-before-content: '😀'; */
+      --sidebar-nav-link-before-content: '😛';
     }
   </style>
+
 
 </head>
 
 <body>
+  <nav></nav>
   <div id="app"></div>
   <script>
     window.$docsify = {
@@ -50,10 +50,15 @@
       relativePath: true,
       auto2top: true,
       loadSidebar: true,
+      alias: {
+      '/.*/_sidebar.md': '/_sidebar.md',
+      },
       loadNavbar: true,
       mergeNavbar: true,
       maxLevel: 4,
       subMaxLevel: 3,
+      sidebarDisplayLevel: 1,
+  
 
 
       // <!-- Theme: Simple (latest v0.x.x) -->
@@ -72,6 +77,12 @@
         text: ">最后更新时间: {docsify-updated}",
         formatUpdated: "{YYYY}/{MM}/{DD}",
         whereToPlace: "bottom"  // "top" or "bottom", default to "bottom"
+      },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
       },
     }
   </script>
@@ -122,6 +133,7 @@
     })
   </script>
 
+<script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script> 
+<script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
 </body>
-
 </html>
