@@ -11,5 +11,6 @@
 - 工具技能
     - [git](git.md "Git")
     - [docker](docker.md "docker")
+    - [linux](linux.md "linux")
 - 其他
     - [随笔](随笔.md "随笔") 
